@@ -1,0 +1,10 @@
+---
+webapp_packages:
+  - httpd
+  - firewalld
+
+webapp_services:
+  - httpd
+  - firewalld
+
+webapp_web_port: 8080

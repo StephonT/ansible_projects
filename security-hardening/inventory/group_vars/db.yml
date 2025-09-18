@@ -1,0 +1,5 @@
+db_engine_pkg:
+  - mariadb-server
+
+db_allow_remote: false
+ 
