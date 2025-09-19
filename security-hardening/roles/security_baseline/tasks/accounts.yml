@@ -23,6 +23,6 @@
       deny = {{ password_policy['faillock']['deny'] }}
       unlock_time = {{ password_policy['faillock']['unlock_time'] }}
       even_deny_root = {{ 'yes' if password_policy['faillock']['even_deny_root'] else 'no' }}
-  when: ansible_os_family in ['RedHat','CentOS']
+  when: ansible_os_family in ['RedHat','Debian']
 
     

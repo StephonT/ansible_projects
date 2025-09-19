@@ -1,0 +1,15 @@
+- name: Deploy banner (issue.net)
+  ansible.builtin.template:
+    src: issue.net.j2
+    dest: "{{ issue_net_path }}"
+    mode: "0644"
+  when: baseline_banner_enabled
+
+- name: Configure sshd_config
+  ansible.builtin.template:
+    src: sshd_config.j2
+    dest: "{{ sshd_config_path }}"
+    owner: root
+    group: root
+    mode: '0600'
+  notify: restart_sshd
