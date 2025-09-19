@@ -1,0 +1,6 @@
+---
+- name: Apply Linux Security baseline
+  hosts: all
+  become: true
+  roles:
+    - security_baseline

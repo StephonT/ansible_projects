@@ -7,7 +7,7 @@ These are step-by-step guidelines for securely configuring systems (Linux, Windo
 
 - Authentication and Authorization (e.g./ strong password policies, lockout after a # of failed attempts)
 
-- Network Configuration (e.g./ firewall rules, disable IPv6 if not used
+- Network Configuration (e.g./ firewall rules, disable IPv6 if not used)
 
 - File permissions and ownership (e.g., restrict access to /etc/passwd, /etc/shadow)
 

@@ -1,2 +1,32 @@
 ---
-# defaults file for security_baseline
+baseline_target: "level1_server"
+baseline_banner_enabled: true
+
+ssh:
+  protocol: 2
+  log_level: VERBOSE
+  max_auth_tries: 4
+  client_alive_interval: 300
+  client_alive_count_max: 2
+  permit_root_login: "yes"
+  password_authentication: "no"
+  kex: ["curve25519-sha256","diffie-hellman-group14-sha256"]
+  macs: ["hmac-sha2-512","hmac-sha2-256"]
+  ciphers: ["chacha20-poly1305@openssh.com","aes256-gcm@openssh.com","aes256-ctr"]
+  
+password_policy:
+  minlen: 14
+  max_days: 365
+  warn_days: 7
+  remember: 5
+  faillock:
+    deny: 5
+    unlock_time: 900
+    even_deny_root: true
+
+auditd:
+  max_log_file: 200
+  max_log_file_action: keep_logs
+  space_left_action: email
+  admin_space_left_action: halt
+  flush: incremental_async
