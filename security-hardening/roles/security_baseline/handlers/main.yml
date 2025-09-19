@@ -1,2 +1,5 @@
 ---
-# handlers file for security_baseline
+- name: restart_sssd_if_present
+  ansible.builtin.systemd:
+    name: sssd
+    state: restarted 

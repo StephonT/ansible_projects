@@ -1,0 +1,13 @@
+---
+sshd_config_path: /etc/ssh/sshd_config
+issue_net_path: /etc/issue.net 
+pam_dir: /etc/pam.d 
+auditd_conf: /etc/audit/audit.conf 
+faillock_conf: /etc/security/faillock.conf
+packages_base:
+  - sudo
+  - openssh-server 
+  - audit 
+  - firewalld
+
+

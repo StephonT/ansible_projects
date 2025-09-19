@@ -1,0 +1,28 @@
+---
+- name: Enforce login.defs max/min age
+  ansible.builtin.lineinfile:
+    path: /etc/login.defs
+    regexp: "^{{ item.key }}"
+    line: "{{ item.key }}  {{ item.val }}"
+    create: false
+  loop:
+    - {key: 'PASS_MAX_DAYS', val: '{{ password_policy["max_days"] }}'}
+    - {key: 'PASS_WARN_AGE', val: '{{ password_policy["warn_days"] }}'}
+
+- name: Set system-wide minimum password length
+  ansible.builtin.lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: "^# minlen"
+    line: 'minlen = {{ password_policy["minlen"] }}'
+  notify: restart_sssd_if_present
+
+- name: Configure PAM faillock (auth failure lockout)
+  ansible.builtin.blockinfile:
+    path: '{{ faillock_conf }}'
+    block: |
+      deny = {{ password_policy['faillock']['deny'] }}
+      unlock_time = {{ password_policy['faillock']['unlock_time'] }}
+      even_deny_root = {{ 'yes' if password_policy['faillock']['even_deny_root'] else 'no' }}
+  when: ansible_os_family in ['RedHat','CentOS']
+
+    
